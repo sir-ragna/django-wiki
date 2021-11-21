@@ -1,0 +1,10 @@
+
+{% extends "base.html.j2" %}
+
+{% block content %}
+    <ul>
+    {% for post in posts %}
+        <li>{{ post }}</li>
+    {% endfor %}
+    </ul>
+{% endblock content %}
