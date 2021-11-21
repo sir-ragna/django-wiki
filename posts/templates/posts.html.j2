@@ -4,7 +4,11 @@
 {% block content %}
     <ul>
     {% for post in posts %}
-        <li>{{ post }}</li>
+        <li>
+            <a href="{% url 'view' post %}">
+                {{ post }}
+            </a>
+        </li>
     {% endfor %}
     </ul>
 {% endblock content %}
