@@ -2,3 +2,5 @@
 venv/**
 venv/
 *.sqlite3
+entries/**
+entries/
