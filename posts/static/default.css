@@ -1,0 +1,27 @@
+
+.wrapper { 
+    display: flex;
+    width: 100%;
+    align-items: stretch; 
+}
+
+.sidebar {
+    background-color: #f0f0f0;
+    min-height: 100vh;
+    margin: 0px;
+    padding:20px;
+}
+
+.content {
+    padding: 20px;
+}
+
+.nav_links {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.searchbar {
+    width: 100%;
+}
