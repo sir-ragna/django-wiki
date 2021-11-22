@@ -15,12 +15,13 @@
     <div class="sidebar col-lg-2 col-md-3">
         {# <h2>Search</h2> #}
         <form>
-            <input class="searchbar" type="text" name="q" placeholder="Search Through posts">
+            <input class="searchbar form-control" type="text" name="q" placeholder="Search Through posts">
         </form>
         <br>
         <ul class="nav_links">
             <li><a href="{% url 'mainpage' %}">Mainpage</a></li>
             <li><a href="{% url 'index' %}">Posts overview</a></li>
+            <li><a href="{% url 'new post' %}">New post</a></li>
         </ul>
     </div>
     <div class="content col-lg-10 col-md-9">
