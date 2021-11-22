@@ -40,6 +40,11 @@ def overview_posts(request):
     })
 
 def view_post(request, name):
+    if request.method == 'DELETE':
+        util.delete_entry(name)
+        messages.warning(request, f"Removed post \"{name}\"")
+        return HttpResponse()
+
     if not name in util.list_entries():
         return HttpResponseNotFound("Could not find post")
 

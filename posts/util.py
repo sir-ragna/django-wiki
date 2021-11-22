@@ -12,6 +12,13 @@ def list_entries():
     return list(sorted(re.sub(r"\.md$", "", filename)
                 for filename in filenames if filename.endswith(".md")))
 
+def delete_entry(title):
+    """
+    Deletes an encyclopedia entry, given its title.
+    """
+    filename = f"entries/{title}.md"
+    if default_storage.exists(filename):
+        default_storage.delete(filename)
 
 def save_entry(title, content):
     """
