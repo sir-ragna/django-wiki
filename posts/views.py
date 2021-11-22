@@ -16,12 +16,17 @@ def new_post(request):
             # We have a valid new post form
             title = post_form.cleaned_data['title']
             content = post_form.cleaned_data['content']
-            util.save_entry(title, content)
-            messages.info(request, "Post saved")
-            return HttpResponseRedirect(reverse('view', kwargs={'name': title}))
-        else:
+
+            # Check if the post doesn't already exist (to prevent overwritting)
+            if not title in util.list_entries():
+                util.save_entry(title, content)
+                messages.info(request, "Post saved")
+                return HttpResponseRedirect(reverse('view', kwargs={'name': title}))
+            else:
+                messages.error(request, "Error: Failed to save post (already exists)")    
+        else: # not is_valid()
             messages.error(request, "Error: Failed to save post (invalid form)")
-    else:
+    else: # not a POST
         post_form = forms.Post()
     
     return render(request, 'new_post.html.j2', { 
