@@ -25,6 +25,15 @@
         </ul>
     </div>
     <div class="content col-lg-10 col-md-9">
+        <div class="messages m-2">
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-primary {% if message.tags %}{{ message.tags }}{% endif %}" role="alert">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            {% endif %}
+        </div>
         {% block content %}
         {% endblock content %}
     </div>
