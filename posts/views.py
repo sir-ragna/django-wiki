@@ -5,9 +5,13 @@ from django.shortcuts import render
 
 import markdown
 from . import util
+from . import forms
 
-def new_post():
-    pass
+def new_post(request):
+    post_form = forms.Post()
+    return render(request, 'new_post.html.j2', { 
+        'post_form': post_form
+    })
 
 def overview_posts(request):
     posts = util.list_entries()

@@ -1,0 +1,13 @@
+{% extends "base.html.j2" %}
+
+{% block content %}
+
+<h3>Author a new post</h3>
+<hr>
+<form action="{% url 'new post' %}" method="POST">
+{% csrf_token %}
+{{ post_form.title }}
+{{ post_form.content }}
+</form>
+
+{% endblock content %}
