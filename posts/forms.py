@@ -14,7 +14,8 @@ class Post(forms.Form):
         widget=forms.Textarea(attrs={
             'class': 'form-control mb-2', 
             'rows': '10', 
-            'placeholder': 'Write your article here'
+            'placeholder': 'Write your article here',
+            'style': 'font-family:monospace;'
         })
     )
 
@@ -25,6 +26,7 @@ class EditPost(forms.Form):
         widget=forms.Textarea(attrs={
             'class': 'form-control mb-2', 
             'rows': '10', 
-            'placeholder': 'Write your article here'
+            'placeholder': 'Write your article here',
+            'style': 'font-family:monospace;',
         })
     )
