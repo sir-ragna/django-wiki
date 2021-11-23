@@ -2,10 +2,21 @@
 
 {% block content %}
 
-<span>showing content of /posts/{{ name }}</span>
+<div class="row">
+    <div class="col">
+        <span>showing content of /posts/{{ name }}</span>
+    </div>
+    <div class="col col-md-auto">
+        <!-- CSFR Used by CSFR oneliner -->
+        {% csrf_token %}
+        <!-- Nice oneliner CSFR Hack -->
+        <button type="button" class="btn btn-danger" 
+            onclick="fetch('{% url 'view' name %}', {method: 'delete', headers: { 'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value } }).then(() => {window.location = '{% url 'index' %}'})"
+            >DELETE this post</button>
+    </div>
+</div>
+<hr>
 
-<p>
-    {{ content|safe }}
-</p>
+<div>{{ content|safe }}</div>
 
 {% endblock content %}
