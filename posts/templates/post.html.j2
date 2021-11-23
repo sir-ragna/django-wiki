@@ -3,9 +3,14 @@
 {% block content %}
 
 <div class="row">
-    <div class="col">
-        <span>showing content of /posts/{{ name }}</span>
+    <div class="col-md-auto">
+        <button type="button" class="btn btn-primary">Edit '{{ name }}'</button>
     </div>
+    <div class="col"><!-- empty spacer div --></div>
+    <div class="col-md-auto">
+        <span>showing content of &lt;&lt;<b>{{ name }}</b>&gt;&gt;</span>
+    </div>
+    <div class="col"><!-- empty spacer div --></div>
     <div class="col col-md-auto">
         <!-- CSFR Used by CSFR oneliner -->
         {% csrf_token %}
