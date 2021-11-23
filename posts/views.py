@@ -86,10 +86,9 @@ def search_posts(request):
 
     if 'q' in request.GET:
         query = request.GET['q']
-        query = query.upper()
         for title in util.list_entries():
             content = util.get_entry(title)
-            if query in content.upper():
+            if query.upper() in content.upper():
                 results.append({'title': title, 'content': content})
 
-    return render(request, "search_results.html.j2", {'results': results})
+    return render(request, "search_results.html.j2", {'results': results, 'query': query})

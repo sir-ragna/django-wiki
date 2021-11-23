@@ -9,18 +9,19 @@ a#search_result > div.row:hover { background-color: #f0f0f0; }
 
 {% block content %}
 
+<h2>Displaying search results for <q>{{ query }}</q></h2>
+
 <div class="row">
-    <div class="col-6 p-1"><b>Title</b></div>
-    <div class="col-4 p-1"><b>content</b></div>
+    <div class="col-4 p-1"><b>Title</b></div>
+    <div class="col-6 p-1"><b>content</b></div>
 </div>
+
 {% for post in results %}
-
-<a id="search_result" href="{% url 'view' post.title %}"><div class="row" style="">
-    <div class="col-6 p-1"><i>{{ post.title }}</i></div>
-    <div class="col-4 p-1 text-muted" style="overflow:hidden;white-space: nowrap; text-overflow: ellipsis; "
-        ><small>{{ post.content }}</small></div>
-</div></a>
-
+    <a id="search_result" href="{% url 'view' post.title %}"><div class="row" style="">
+        <div class="col-4 p-1"><i>{{ post.title }}</i></div>
+        <div class="col-6 p-1 text-muted" style="overflow:hidden;white-space: nowrap; text-overflow: ellipsis; "
+            ><small>{{ post.content }}</small></div>
+    </div></a>
 {% endfor %}
 
 {% endblock content %}
