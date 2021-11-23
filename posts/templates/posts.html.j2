@@ -2,10 +2,6 @@
 {% extends "base.html.j2" %}
 
 {% block content %}
-
-    <!-- CSFR Used by CSFR oneliner -->
-    {% csrf_token %}
-
     <h2>All posts</h2>
     <ul>
     {% for post in posts %}
@@ -13,10 +9,6 @@
             <a href="{% url 'view' post %}">
                 {{ post }}
             </a>
-
-            <!-- Nice oneliner CSFR Hack -->
-            (<span onclick="fetch('{% url 'view' post %}', {method: 'delete', headers: { 'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value } }).then(() => {window.location.reload(true)})"
-            >delete</span>)
         </li>
     {% endfor %}
     </ul>
