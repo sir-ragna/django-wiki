@@ -61,7 +61,27 @@ def view_post(request, name):
 def delete_posts():
     pass
 
-def edit_post():
-    pass
+def edit_post(request, name):
+    if not name in util.list_entries():
+        # Post doesn't exist, do we redirect?
+        return HttpResponseNotFound("Could not find post")
+    
+    if request.method == 'POST':
+        edit_form = forms.EditPost(request.POST)
+        if edit_form.is_valid():
+            content = edit_form.cleaned_data['content']
+            util.save_entry(name, content)
+            messages.info(request, "Saved changes")
+        else:
+            messages.error(request, "Failed to save changes (invalid form)")
+    else:
+        post_content = util.get_entry(name)
+        edit_form = forms.EditPost(
+            {'title': name, 'content': post_content})    
+
+    return render(request, "edit_post.html.j2", {
+        'name': name, 
+        'edit_form': edit_form,
+    })
 
 

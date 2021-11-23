@@ -17,3 +17,14 @@ class Post(forms.Form):
             'placeholder': 'Write your article here'
         })
     )
+
+class EditPost(forms.Form):
+    title = forms.CharField(widget=forms.HiddenInput())
+    content = forms.CharField(
+        max_length=10240,
+        widget=forms.Textarea(attrs={
+            'class': 'form-control mb-2', 
+            'rows': '10', 
+            'placeholder': 'Write your article here'
+        })
+    )
