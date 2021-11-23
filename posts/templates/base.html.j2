@@ -9,13 +9,14 @@
 
     <link href="{% static 'default.css' %}" rel="stylesheet">
     <title>posts</title>
+    {% block head %}{% endblock head %}
 </head>
 <body>
 <div class="wrapper">
     <div class="sidebar col-lg-2 col-md-3">
         {# <h2>Search</h2> #}
-        <form>
-            <input class="searchbar form-control" type="text" name="q" placeholder="Search Through posts">
+        <form action="{% url 'search post' %}" method="GET">
+            <input class="searchbar form-control" type="text" name="q" placeholder="Search through posts">
         </form>
         <br>
         <ul class="nav_links">

@@ -58,9 +58,6 @@ def view_post(request, name):
         'content': html_content
     })
 
-def delete_posts():
-    pass
-
 def edit_post(request, name):
     if not name in util.list_entries():
         # Post doesn't exist, do we redirect?
@@ -84,4 +81,15 @@ def edit_post(request, name):
         'edit_form': edit_form,
     })
 
+def search_posts(request):
+    results = []
 
+    if 'q' in request.GET:
+        query = request.GET['q']
+        query = query.upper()
+        for title in util.list_entries():
+            content = util.get_entry(title)
+            if query in content.upper():
+                results.append({'title': title, 'content': content})
+
+    return render(request, "search_results.html.j2", {'results': results})
