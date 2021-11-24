@@ -2,6 +2,10 @@
 
 # Wiki
 
+Some educational code to learn simple Django CRUD operations.
+
+The current implmenentation avoids any server-side Javascript.
+It did have a JS delete button at some point as described below.
 
 ## Inline JS Delete button with CSFR
 
