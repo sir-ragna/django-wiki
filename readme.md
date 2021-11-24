@@ -16,7 +16,7 @@ This will send a DELETE request with the required CSRF token.
     >DELETE this post</button>
 ```
 
-This request can then be parsed.
+The code to treat this HTTP request can simply check the request method.
 
 ```python
 # views.py
@@ -73,14 +73,15 @@ This could be a hidden checkbox called **edit** for example.
 It is possible to take this aproach further and encoding all the possible actions
 into a specific field, only needing one actual endpoint.
 
-Here is an example of how you could use a hidden _action_ field to 
+Here is an example of how you could use a hidden _action_ field 
+in combination with only one url endpoint to deal with CRUD operations.
 
 - /post
   - GET `/post` request display the post.
     - This page contains links to `/post?new=true` and `/post?edit=true` and a form with the hidden action = 'delete' to allow deleting the item.
   - GET `/post?new=true` display form to create a new post(hidden action field = `create`)
   - GET `/post?edit=true` display the edit form (hidden action field = `update`)
-  - POST request
+  - POST request to `/post`
     - when `action == 'create'`, the other paremeters are for creating a new post
     - when `action == 'update'`, the other parameters are for editing an existing post
     - when `action == 'delete'`, the other paremeters are for deleting an existing post
@@ -199,3 +200,23 @@ function() { window.location = '{% url 'index' %}' }
 ```
 
 Navigating to another page in Javascript is done through setting the `window.location` value to a URL.
+
+#### conclusion
+
+Using Javascript in the front-end to trigger your CRUD operations,
+ your back-end code will be able to check the request method and 
+decide based on that what todo next.
+
+```py
+if request.method == 'DELETE':
+    # code to delete the item
+    # then redirect somehwere
+elif request.method == 'PUT':
+    # code to update the item
+elif request.method == 'POST:
+    # code to create the item
+
+# Show the item
+return render(request, 'show_item.html'
+```
+
