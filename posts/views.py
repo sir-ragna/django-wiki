@@ -40,11 +40,6 @@ def overview_posts(request):
     })
 
 def view_post(request, name):
-    if request.method == 'DELETE':
-        util.delete_entry(name)
-        messages.warning(request, f"Removed post \"{name}\"")
-        return HttpResponse()
-
     if not name in util.list_entries():
         return HttpResponseNotFound("Could not find post")
 
@@ -93,3 +88,19 @@ def search_posts(request):
                 results.append({'title': title, 'content': content})
 
     return render(request, "search_results.html.j2", {'results': results, 'query': query})
+
+def delete_post(request, name):
+    """
+    Confirmation page to delete a post.
+    """
+    if request.method == 'POST':
+        delete_form = forms.DeletePost(request.POST)
+        if delete_form.is_valid():
+            util.delete_entry(name)
+            messages.info(request, "Deleted post")
+            return HttpResponseRedirect(reverse('index'))
+        else:
+            messages.error(request, "Failed to delete post (invalid form)")
+    
+    delete_form = forms.DeletePost({'title': name})
+    return render(request, "delete_post.html.j2", {'name': name, 'delete_form': delete_form})

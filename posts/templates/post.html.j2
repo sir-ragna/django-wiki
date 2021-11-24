@@ -13,12 +13,9 @@
     </div>
     <div class="col"><!-- empty spacer div --></div>
     <div class="col col-md-auto">
-        <!-- CSFR Used by CSFR oneliner -->
-        {% csrf_token %}
-        <!-- Nice oneliner CSFR Hack -->
-        <button type="button" class="btn btn-danger" 
-            onclick="fetch('{% url 'view' name %}', {method: 'delete', headers: { 'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value } }).then(() => {window.location = '{% url 'index' %}'})"
-            >DELETE this post</button>
+        <a href="{% url 'delete post' name %}"><button
+            class="btn btn-warning"
+            >Delete</button></a>
     </div>
 </div>
 <hr>

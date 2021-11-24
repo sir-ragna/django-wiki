@@ -25,8 +25,14 @@ class EditPost(forms.Form):
         max_length=10240,
         widget=forms.Textarea(attrs={
             'class': 'form-control mb-2', 
-            'rows': '10', 
+            'rows': '25', 
             'placeholder': 'Write your article here',
             'style': 'font-family:monospace;',
         })
     )
+
+class DeletePost(forms.Form):
+    """
+    Form to delete a post. We only need a hidden title form.
+    """
+    title = forms.CharField(widget=forms.HiddenInput())
